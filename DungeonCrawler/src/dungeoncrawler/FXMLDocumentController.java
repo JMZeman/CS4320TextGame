@@ -34,9 +34,33 @@ public class FXMLDocumentController implements Initializable {
     private GameHandler gameHandler;
     
     @FXML
-    private void movePlayerToNextRoom(ActionEvent event) {
+    private void moveUp(ActionEvent event) {
         
-        gameHandler.movePlayer();
+        gameHandler.movePlayer("up");
+        
+        
+    }
+    
+    @FXML
+    private void moveDown(ActionEvent event) {
+        
+        gameHandler.movePlayer("down");
+        
+        
+    }
+    
+    @FXML
+    private void moveRight(ActionEvent event) {
+        
+        gameHandler.movePlayer("right");
+        
+        
+    }
+    
+    @FXML
+    private void moveLeft(ActionEvent event) {
+        
+        gameHandler.movePlayer("left");
         
         
     }

@@ -29,8 +29,12 @@ public class GameHandler {
          
        dungeon = new Dungeon(rows,columns);
        player = new Player(dungeon,0,0);
-       player.health = 2000;
+       player.health = 50;
        player.name = "Jonas";
+       Armor unarmored = new Armor(0);
+       Weapon unarmed = new Weapon(1, 90);
+       player.armor = unarmored;
+       player.weapon = unarmed;
        textarea.setText(player.name + " has spawned at Room 0,0");
        textarea.appendText("\nRoom Type:"+player.currentRoom.type);
        
@@ -38,12 +42,22 @@ public class GameHandler {
         
     }
     
-    public void movePlayer(){
+    public void movePlayer(String direction){
         int x1 = player.x;//x before move
         int y1 = player.y;//y before move
-        player.moveToNextRoom();
+        switch (direction){
+            case "up":      player.moveUp();
+                            break;
+            case "down":    player.moveDown();
+                            break;
+            case "right":   player.moveRight();
+                            break;
+            case "left":    player.moveLeft();
+                            break;
+                            
+        }
         if(x1 == player.x && y1 == player.y){ //if player did not move
-            textarea.appendText("\nCannot go to next room! Monster blocking path");
+            textarea.appendText("\nCannot move in that direction\n Dead end");
         }
         else{
             textarea.appendText("\nMoved to room "+player.x +","+player.y);
