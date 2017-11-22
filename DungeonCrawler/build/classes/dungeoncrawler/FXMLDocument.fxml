@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="666.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="dungeoncrawler.FXMLDocumentController">
+  <children>
+    <Button id="button" fx:id="button1" layoutX="47.0" layoutY="397.0" onAction="#movePlayerToNextRoom" prefWidth="122.0" text="Next" textAlignment="LEFT" />
+    <Label fx:id="label" layoutX="100.0" layoutY="209.0" minHeight="16.0" minWidth="69.0" />
+    <TextArea fx:id="text_box" layoutX="370.0" layoutY="37.0" prefHeight="412.0" prefWidth="270.0" wrapText="true" />
+  </children>
+</AnchorPane>
