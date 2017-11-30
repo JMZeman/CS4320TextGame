@@ -28,7 +28,7 @@ public class Player {
         
     }
     
-    private boolean roomIsEmpty(Room room){ 
+    private boolean roomIsEmpty(Room room){ //needs to check if monster currently in room
         if(room.type=="NULL" || room.type =="START"){ //NULL rooms have nothing, so you can continue
             return(true);
         }
@@ -42,13 +42,7 @@ public class Player {
             
         
         
-        
-        
-            if(x==currentDungeon.x-1 && y==currentDungeon.y-1){ //if in the final room and you hit next, you win
-
-                //Victory!
-                return;
-            }
+     
 
 
 
@@ -81,14 +75,7 @@ public class Player {
             
         
         
-        
-        
-            if(x==currentDungeon.x-1 && y==currentDungeon.y-1){ //if in the final room and you hit next, you win
-
-                
-                return;
-            }
-
+       
 
 
             if(x!=0){ //if not at first collumn, jut continue down row
@@ -120,15 +107,6 @@ public class Player {
         if(roomIsEmpty(currentRoom)==true){ //Room must be empty (ie cleared of monsters) to go to next room
             
             
-        
-        
-        
-        
-            if(x==currentDungeon.x-1 && y==currentDungeon.y-1){ //if in the final room and you hit next, you win
-
-                //Victory!
-                return;
-            }
 
 
 
@@ -161,15 +139,6 @@ public class Player {
             
             
         
-        
-        
-        
-            if(x==currentDungeon.x-1 && y==currentDungeon.y-1){ //if in the final room and you hit next, you win
-
-                //Victory!
-                return;
-            }
-
 
 
             if(y<(currentDungeon.y-1)){ //if not in last column , jut continue right column
