@@ -30,7 +30,7 @@ public class GameHandler {
        dungeon = new Dungeon(rows,columns);
        player = new Player(dungeon,0,0);
        player.health = 50;
-       player.name = "Jonas";
+       player.name = "Player";
        Armor unarmored = new Armor(0);
        Weapon unarmed = new Weapon(1, 90);
        player.armor = unarmored;
