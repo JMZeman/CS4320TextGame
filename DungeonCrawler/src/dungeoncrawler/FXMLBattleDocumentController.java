@@ -26,7 +26,7 @@ public class FXMLBattleDocumentController implements Initializable {
     
     public void transferGameHandler(GameHandler gameHandler){
         this.gameHandler = gameHandler;
-        battleLog.appendText("\n Your Health: " + gameHandler.player.health);
+        battleLog.appendText("You are fighting a" + "\n Your Health: " + gameHandler.player.health + "The Health is");
     }
     
     @FXML
@@ -38,13 +38,16 @@ public class FXMLBattleDocumentController implements Initializable {
     
     @FXML
     public void usePotionButton(){
+        gameHandler.player.health += 10;
     }
     
     @FXML
     public void defendButton(){
     }
     
-    
+    private void monsterAction(){
+        
+    }
     
     
     

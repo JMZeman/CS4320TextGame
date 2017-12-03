@@ -10,7 +10,7 @@
   <children>
     <Button id="button" fx:id="button1" layoutX="31.0" layoutY="363.0" onAction="#moveLeft" prefWidth="122.0" text="Left" textAlignment="LEFT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="31.0" />
     <Label fx:id="label" layoutX="100.0" layoutY="209.0" minHeight="16.0" minWidth="69.0" />
-    <TextArea fx:id="textBox" layoutX="370.0" layoutY="20.0" prefHeight="429.0" prefWidth="270.0" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="20.0" />
+    <TextArea fx:id="textBox" editable="false" layoutX="370.0" layoutY="20.0" prefHeight="429.0" prefWidth="270.0" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="20.0" />
       <Button id="button" fx:id="button11" layoutX="119.0" layoutY="310.0" onAction="#moveUp" prefWidth="122.0" text="Up" textAlignment="LEFT" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="119.0" />
       <Button id="button" fx:id="button12" layoutX="119.0" layoutY="418.0" onAction="#moveDown" prefWidth="122.0" text="Down" textAlignment="LEFT" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="119.0" />
       <Button id="button" fx:id="button13" layoutX="211.0" layoutY="363.0" onAction="#moveRight" prefWidth="122.0" text="Right" textAlignment="LEFT" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="211.0" />
