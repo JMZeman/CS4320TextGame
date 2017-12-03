@@ -35,6 +35,10 @@ public class Player {
         return(true);
     }
     
+    public void battle(){
+        
+    }
+    
     public void moveRight(){
         
         if(roomIsEmpty(currentRoom)==true){ //Room must be empty (ie cleared of monsters) to go to next room

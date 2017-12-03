@@ -5,6 +5,7 @@
  */
 package dungeoncrawler;
 
+import java.io.IOException;
 import javafx.scene.control.TextArea;
 
 /**
@@ -29,6 +30,7 @@ public class GameHandler {
          
        dungeon = new Dungeon(rows,columns);
        player = new Player(dungeon,0,0);
+       dungeon.rooms[1][1].type = "monster";
        player.health = 50;
        player.name = "Player";
        Armor unarmored = new Armor(0);
@@ -42,7 +44,7 @@ public class GameHandler {
         
     }
     
-    public void movePlayer(String direction){
+    public void movePlayer(String direction) throws IOException{
         int x1 = player.x;//x before move
         int y1 = player.y;//y before move
         switch (direction){
@@ -59,6 +61,7 @@ public class GameHandler {
         if(x1 == player.x && y1 == player.y){ //if player did not move
             textarea.appendText("\nCannot move in that direction\n Dead end");
         }
+
         else{
             textarea.appendText("\nMoved to room "+player.x +","+player.y);
             textarea.appendText("\nRoom Type:"+player.currentRoom.type);
