@@ -18,6 +18,7 @@ public class Room{
     public String type = "NULL"; // like BOSS,STORE,MONSTER,LOOT
     public String description = "";
     
+    public Monster monster = null;
     
     public Room(int x,int y,int a,int b){
         this.a = a;
@@ -25,7 +26,19 @@ public class Room{
         this.x = x;
         this.y = y;
         setType();
+        populateRoom();
     }
+    
+    
+    private void populateRoom(){
+        
+        if("MONSTER".equals(type)){ //if this room is a monster room
+            
+            monster = new Monster("Sheldon",10,12,2,23); //one monster for now
+            
+        }
+    }
+    
     
     private void setType(){
         
@@ -33,7 +46,12 @@ public class Room{
             type = "START";
         }
         
-        else if(a==x-1 && b == y-1){ //if this is the final room
+        if(a%2==0){ //if x pos in dungeon is even
+            type = "MONSTER";
+        }
+        
+        
+        else if(a==x-1 && b == y-1){ //if this is the final room//needs to be changed
             type = "FINAL";
         }
         

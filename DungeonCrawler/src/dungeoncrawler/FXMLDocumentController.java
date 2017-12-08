@@ -45,7 +45,7 @@ public class FXMLDocumentController implements Initializable {
     private GameHandler gameHandler;
     
     private void loadBattlePane() throws IOException{
-        if(gameHandler.player.currentRoom.type.equals("monster")){
+        if(gameHandler.player.currentRoom.type.equals("MONSTER")){
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("FXMLBattleDocument.fxml"));
             AnchorPane pane = loader.load();

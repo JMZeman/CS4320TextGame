@@ -30,11 +30,10 @@ public class GameHandler {
          
        dungeon = new Dungeon(rows,columns);
        player = new Player(dungeon,0,0);
-       dungeon.rooms[1][1].type = "monster";
        player.health = 50;
        player.name = "Player";
        Armor unarmored = new Armor(0);
-       Weapon unarmed = new Weapon(1, 90);
+       Weapon unarmed = new Weapon(1, 90); //1 attack 90 hit rate
        player.armor = unarmored;
        player.weapon = unarmed;
        textarea.setText(player.name + " has spawned at Room 0,0");
