@@ -32,6 +32,7 @@ public class FXMLBattleDocumentController implements Initializable {
     private Player player;
     
     private Random hitChanceRoll = new Random();
+    private boolean defended = false;
     
     public void transferGameHandler(GameHandler gameHandler){
         this.gameHandler = gameHandler;
@@ -66,7 +67,9 @@ public class FXMLBattleDocumentController implements Initializable {
     @FXML
     public void defendButton() throws IOException{
         
-        //defend logic
+        gameHandler.player.armor.defense += 5;
+        defended = true;
+        battleLog.appendText("\nYou defended\n");
         monsterAction();
         
         
@@ -79,19 +82,30 @@ public class FXMLBattleDocumentController implements Initializable {
         
         if(player.currentRoom.monster.health > 0){ //if the monster is alive still
         
-           if ((hitChanceRoll.nextInt(100)+1) <= player.weapon.hitRate){
-            int attackDamage = player.currentRoom.monster.attack - player.armor.defense; //Attack logic here , can change to use hit chance, etc
-            player.health -= attackDamage; //Can change to be based off monster defense
-            battleLog.appendText("\n" + player.currentRoom.monster.name + " attacks and deals " + (player.currentRoom.monster.attack - player.armor.defense) + "\nYour health: " + player.health + "\n");
+            if ((hitChanceRoll.nextInt(100)+1) <= player.weapon.hitRate){
+                int attackDamage = player.currentRoom.monster.attack - player.armor.defense; //Attack logic here , can change to use hit chance, etc
+                if(attackDamage <= 0 ){
+                    battleLog.appendText("\nYou took no damage\n");
+                }
+                else{
+                player.health -= attackDamage; //Can change to be based off monster defense
+                battleLog.appendText("\n" + player.currentRoom.monster.name + " attacks and deals " + (player.currentRoom.monster.attack - player.armor.defense) + "\nYour health: " + player.health + "\n");
+                }
             }
             else{
             battleLog.appendText("\n" + player.currentRoom.monster.name + " missed\n");
             }
-            
+            if (defended){
+                gameHandler.player.armor.defense -= 5;
+                defended = false;
+            }
             //logic here for Monsters attack or other action
         }
         else{
-            
+            if (defended){
+                gameHandler.player.armor.defense -= 5;
+                defended = false;
+            }
             battleVictory();
         }
         

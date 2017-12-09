@@ -49,7 +49,7 @@ public class GameHandler {
 //       this.player = new Player(dungeon,0,0);
        this.textarea = textarea;
        textarea.setText(player.name + " is at Room "+player.x +","+player.y);
-       textarea.appendText("\nRoom Type:"+player.currentRoom.type);
+       //textarea.appendText("\nRoom Type:"+player.currentRoom.type);       Hiddedn type
         
     }
     
@@ -74,7 +74,7 @@ public class GameHandler {
 
         else{
             textarea.appendText("\nMoved to room "+player.x +","+player.y);
-            textarea.appendText("\nRoom Type:"+player.currentRoom.type);
+            //textarea.appendText("\nRoom Type:"+player.currentRoom.type);   keep type hidden?
         }
     }
     

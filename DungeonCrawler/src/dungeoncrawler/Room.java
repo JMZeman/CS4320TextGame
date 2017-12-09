@@ -23,6 +23,8 @@ public class Room{
     public String description = "";
     
     public Monster monster = null;
+    public Weapon weapon = null;
+    public Armor armor = null;
     
     public Room(int x,int y,int a,int b){
         this.a = a;
@@ -55,9 +57,34 @@ public class Room{
             }
             
         }
-        //if("FINAL".equals(type)){// makes a final boss monster
+        if("ITEM".equals(type)){// creats some random weapons and stuff
+            n = random.nextInt(7) + 1;
             
-        //}
+            switch(n){  //populates with random monsters
+                
+                case 1:
+                    weapon = new Weapon(4 ,95);
+                    break;
+                case 2:
+                    weapon = new Weapon(6 ,95);
+                    break;
+                case 3:
+                    weapon = new Weapon(10 ,95);
+                    break;
+                case 4:
+                    armor = new Armor(1);
+                    break;
+                case 5:
+                    armor = new Armor(2);
+                    break;
+                case 6:
+                    armor = new Armor(3);
+                    break;
+                case 7:
+                    armor = new Armor(4);
+                    break;
+            }
+        }
     }
     
     
@@ -73,9 +100,14 @@ public class Room{
             monster = new Monster("Demon Lord", 20, 8, 95, 0);
         }
         
-        if(n<=20){ //if x pos in dungeon is even
+        else if (n <= 20){
+            type = "ITEM";
+        }
+        
+        else if(n <=40 && n > 20){ //if x pos in dungeon is even
             type = "MONSTER";
         }
+        
         
         
     }

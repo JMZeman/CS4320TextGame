@@ -44,6 +44,21 @@ public class FXMLDocumentController implements Initializable {
     
     private GameHandler gameHandler;
     
+    private void foundItem(){                                       //cheacks if better stats then equips it if it is
+        if(gameHandler.player.currentRoom.type.equals("ITEM")){
+        gameHandler.player.currentRoom.type = "";
+            if(gameHandler.player.currentRoom.weapon != null && gameHandler.player.currentRoom.weapon.attack > gameHandler.player.weapon.attack){
+                gameHandler.player.weapon = gameHandler.player.currentRoom.weapon;
+                textBox.appendText("\n You found a better weapon and equiped it\n it has an attack of " + gameHandler.player.weapon.attack);
+            }
+            if(gameHandler.player.currentRoom.armor != null && gameHandler.player.currentRoom.armor.defense > gameHandler.player.armor.defense){
+                gameHandler.player.armor = gameHandler.player.currentRoom.armor;
+                textBox.appendText("\n\n You found better armor and equiped it\nIt has a defense of " + gameHandler.player.currentRoom.armor.defense);
+            }
+        gameHandler.player.currentRoom.type = "";
+        }
+    }
+    
     private void loadBattlePane() throws IOException{
         if(gameHandler.player.currentRoom.type.equals("MONSTER")){
             FXMLLoader loader = new FXMLLoader();
@@ -70,7 +85,7 @@ public class FXMLDocumentController implements Initializable {
 
         gameHandler.movePlayer("up");
         loadBattlePane();
-        
+        foundItem();
         
     }
     
@@ -79,7 +94,7 @@ public class FXMLDocumentController implements Initializable {
         
         gameHandler.movePlayer("down");
         loadBattlePane();
-        
+        foundItem();
     }
     
     @FXML
@@ -87,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
         
         gameHandler.movePlayer("right");
         loadBattlePane();
-        
+        foundItem();
         
     }
     
@@ -96,14 +111,19 @@ public class FXMLDocumentController implements Initializable {
         
         gameHandler.movePlayer("left");
         loadBattlePane();
-        
+        foundItem();
         
     }
     
     public void returnFromBattle(GameHandler gameHandler){
         this.gameHandler = gameHandler;
+        if(gameHandler.player.currentRoom.type.equals("FINAL")){
+            textBox.setText("\n***********\nYou have escaped the dungeon!\n**************\n");
+        }
+        else{
         gameHandler.player.currentRoom.type = "";
         gameHandler.ReturnFromBattleStart(textBox);
+        }
     }
     
     @Override
