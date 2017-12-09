@@ -11,6 +11,7 @@ package dungeoncrawler;
  */
 public class Player {
     public int health;
+    public int maxHealth;
     public Dungeon currentDungeon;
     public String name;
     int x; //current x

@@ -19,6 +19,7 @@ public class GameHandler {
     public Dungeon dungeon;
     public Player player;
     public boolean gameActive = true;
+    public boolean battleLoss = false; //if died in battle
     
     public GameHandler(TextArea textarea){
         this.textarea = textarea;
@@ -31,12 +32,13 @@ public class GameHandler {
        dungeon = new Dungeon(rows,columns);
        player = new Player(dungeon,0,0);
        player.health = 50;
+       player.maxHealth = player.health;
        player.name = "Player";
        Armor unarmored = new Armor(0);
        Weapon unarmed = new Weapon(1, 90); //1 attack 90 hit rate
        player.armor = unarmored;
        player.weapon = unarmed;
-       textarea.setText(player.name + " has spawned at Room 0,0");
+       textarea.appendText(player.name + " has spawned at Room 0,0");
        //textarea.appendText("\nRoom Type:"+player.currentRoom.type);    type should be just backend for us?
        
         
@@ -48,7 +50,7 @@ public class GameHandler {
 //       this.dungeon = new Dungeon(rows,columns);
 //       this.player = new Player(dungeon,0,0);
        this.textarea = textarea;
-       textarea.setText(player.name + " is at Room "+player.x +","+player.y);
+       textarea.appendText("\n" + player.name + " is at Room "+player.x +","+player.y);
        //textarea.appendText("\nRoom Type:"+player.currentRoom.type);       Hiddedn type
         
     }

@@ -60,14 +60,25 @@ public class FXMLBattleDocumentController implements Initializable {
     
     @FXML
     public void usePotionButton() throws IOException{
-        gameHandler.player.health += 10;
+        
+        
+        if(player.health == player.maxHealth){
+            battleLog.appendText("\nCannot heal! Already at max health\n");
+        }
+        else{
+            if(player.health+10 > player.maxHealth)
+                player.health = player.maxHealth;
+            else
+                player.health += 10;
+            
+        }
         monsterAction();
     }
     
     @FXML
     public void defendButton() throws IOException{
         
-        gameHandler.player.armor.defense += 5;
+        player.armor.defense += 5;
         defended = true;
         battleLog.appendText("\nYou defended\n");
         monsterAction();
@@ -77,7 +88,9 @@ public class FXMLBattleDocumentController implements Initializable {
     
     private void monsterAction() throws IOException{
         
-        
+        if(player.health <= 0){
+            battleFailure();
+        }
         
         
         if(player.currentRoom.monster.health > 0){ //if the monster is alive still
@@ -111,10 +124,30 @@ public class FXMLBattleDocumentController implements Initializable {
         
     }
     
+    private void battleFailure() throws IOException{
+        
+            gameHandler.battleLoss = true;
+        
+        
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
+            
+            AnchorPane pane = loader.load();
+            
+            
+            FXMLDocumentController controller = loader.getController();
+            controller.returnFromBattle(gameHandler);
+            
+            battlePane.getChildren().setAll(pane);
+        
+        
+    }
+    
+    
     private void battleVictory() throws IOException{
         
         //You defeated the monster, go back to previous screen
-        
+            
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("FXMLDocument.fxml"));
             

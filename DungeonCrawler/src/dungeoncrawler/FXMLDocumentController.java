@@ -33,12 +33,8 @@ public class FXMLDocumentController implements Initializable {
      
     
     @FXML
-    private Label label;
-    
-    @FXML
     private TextArea textBox;
-    @FXML
-    private Button button1;
+    
     
     public Object test;
     
@@ -115,10 +111,23 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
+    private void end(){
+        
+    }
+    
     public void returnFromBattle(GameHandler gameHandler){
         this.gameHandler = gameHandler;
+        
+        if(gameHandler.battleLoss == true){
+            textBox.appendText("\nYou have lost the battle! You limp away in agony...\n");
+            gameHandler.player.health = 30;
+            gameHandler.battleLoss = false;
+        }
+        
+        
         if(gameHandler.player.currentRoom.type.equals("FINAL")){
-            textBox.setText("\n***********\nYou have escaped the dungeon!\n**************\n");
+            textBox.appendText("\n***********\nYou have escaped the dungeon!\n**************\n");
+            end();
         }
         else{
         gameHandler.player.currentRoom.type = "";
@@ -129,7 +138,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        textBox.setText("Welcome");
+        textBox.appendText("Welcome\n");
         
         gameHandler = new GameHandler(textBox);
         gameHandler.start();
