@@ -54,6 +54,15 @@ public class FXMLDocumentController implements Initializable {
             dungeonPane.getChildren().setAll(pane);
 
         }
+        if(gameHandler.player.currentRoom.type.equals("FINAL")){
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("FXMLBattleDocument.fxml"));
+            AnchorPane pane = loader.load();
+            FXMLBattleDocumentController battleController = loader.getController();
+            battleController.transferGameHandler(gameHandler);
+            dungeonPane.getChildren().setAll(pane);
+
+        }
     }
     
     @FXML
@@ -89,6 +98,12 @@ public class FXMLDocumentController implements Initializable {
         loadBattlePane();
         
         
+    }
+    
+    public void returnFromBattle(GameHandler gameHandler){
+        this.gameHandler = gameHandler;
+        gameHandler.player.currentRoom.type = "";
+        gameHandler.ReturnFromBattleStart(textBox);
     }
     
     @Override

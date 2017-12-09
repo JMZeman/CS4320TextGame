@@ -7,6 +7,7 @@ package dungeoncrawler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,10 +31,12 @@ public class FXMLBattleDocumentController implements Initializable {
     private GameHandler gameHandler;
     private Player player;
     
+    private Random hitChanceRoll = new Random();
+    
     public void transferGameHandler(GameHandler gameHandler){
         this.gameHandler = gameHandler;
         this.player = gameHandler.player;
-        battleLog.appendText("You are fighting a " + player.currentRoom.monster.name+ "\n Your Health: " + player.health + "\n");
+        battleLog.appendText("You are fighting a " + player.currentRoom.monster.name+ "\n Your Health: " + player.health + "\n " + player.currentRoom.monster.name + "'s Health: " + player.currentRoom.monster.health + "\n");
     }
     
     @FXML
@@ -41,8 +44,14 @@ public class FXMLBattleDocumentController implements Initializable {
     
     @FXML
     public void attackButton() throws IOException{
-        int attackDamage = player.weapon.attack; //Attack logic here , can change to use hit chance, etc
-        player.currentRoom.monster.health -= attackDamage; //Can change to be based off monster defense
+        if ((hitChanceRoll.nextInt(100)+1) <= player.weapon.hitRate){
+            int attackDamage = player.weapon.attack - player.currentRoom.monster.defense; //Attack logic here , can change to use hit chance, etc
+            player.currentRoom.monster.health -= attackDamage; //Can change to be based off monster defense
+            battleLog.appendText("\nYou attack and deal " + (player.weapon.attack - player.currentRoom.monster.defense) + "\nMonster's health: " + player.currentRoom.monster.health + "\n");
+        }
+        else{
+            battleLog.appendText("\nYou missed\n");
+        }
         monsterAction();
         
         
@@ -65,13 +74,20 @@ public class FXMLBattleDocumentController implements Initializable {
     
     private void monsterAction() throws IOException{
         
-        battleLog.appendText("Players current health: " + player.health + "\nMonsters current health: " + player.currentRoom.monster.health + "\n");
+        
         
         
         if(player.currentRoom.monster.health > 0){ //if the monster is alive still
         
-        
-            battleLog.appendText("Monsters Turn!\n");
+           if ((hitChanceRoll.nextInt(100)+1) <= player.weapon.hitRate){
+            int attackDamage = player.currentRoom.monster.attack - player.armor.defense; //Attack logic here , can change to use hit chance, etc
+            player.health -= attackDamage; //Can change to be based off monster defense
+            battleLog.appendText("\n" + player.currentRoom.monster.name + " attacks and deals " + (player.currentRoom.monster.attack - player.armor.defense) + "\nYour health: " + player.health + "\n");
+            }
+            else{
+            battleLog.appendText("\n" + player.currentRoom.monster.name + " missed\n");
+            }
+            
             //logic here for Monsters attack or other action
         }
         else{
@@ -91,8 +107,8 @@ public class FXMLBattleDocumentController implements Initializable {
             AnchorPane pane = loader.load();
             
             
-            //FXMLDocumentController controller = loader.getController();
-            //need to pass back gamehandler so game doesnt restart
+            FXMLDocumentController controller = loader.getController();
+            controller.returnFromBattle(gameHandler);
             
             battlePane.getChildren().setAll(pane);
         

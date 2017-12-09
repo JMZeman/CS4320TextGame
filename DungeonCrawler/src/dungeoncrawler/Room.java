@@ -5,6 +5,8 @@
  */
 package dungeoncrawler;
 
+import java.util.Random;
+
 /**
  *
  * @author To
@@ -14,6 +16,8 @@ public class Room{
     int y; //y dimension of dungeon
     int a; //x pos in dungeon
     int b;//y pos in dungeon
+    int n;
+    Random random = new Random();
     
     public String type = "NULL"; // like BOSS,STORE,MONSTER,LOOT
     public String description = "";
@@ -25,6 +29,7 @@ public class Room{
         this.b = b;
         this.x = x;
         this.y = y;
+        n = random.nextInt(100) + 1;
         setType();
         populateRoom();
     }
@@ -33,10 +38,26 @@ public class Room{
     private void populateRoom(){
         
         if("MONSTER".equals(type)){ //if this room is a monster room
+            n = random.nextInt(3) + 1;
             
-            monster = new Monster("Sheldon",10,12,2,23); //one monster for now
+            switch(n){  //populates with random monsters
+                
+                case 1:
+                    monster = new Monster("Orc",10,5,90,0);
+                    break;
+                case 2:
+                    monster = new Monster("Giant spider", 5, 3, 95, 0);
+                    break;
+                case 3:
+                    monster = new Monster("Man Eating Plant", 5, 7, 80, 0);
+                    break;
+                    
+            }
             
         }
+        //if("FINAL".equals(type)){// makes a final boss monster
+            
+        //}
     }
     
     
@@ -46,13 +67,14 @@ public class Room{
             type = "START";
         }
         
-        if(a%2==0){ //if x pos in dungeon is even
-            type = "MONSTER";
-        }
-        
         
         else if(a==x-1 && b == y-1){ //if this is the final room//needs to be changed
             type = "FINAL";
+            monster = new Monster("Demon Lord", 20, 8, 95, 0);
+        }
+        
+        if(n<=20){ //if x pos in dungeon is even
+            type = "MONSTER";
         }
         
         

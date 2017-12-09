@@ -37,11 +37,22 @@ public class GameHandler {
        player.armor = unarmored;
        player.weapon = unarmed;
        textarea.setText(player.name + " has spawned at Room 0,0");
-       textarea.appendText("\nRoom Type:"+player.currentRoom.type);
+       //textarea.appendText("\nRoom Type:"+player.currentRoom.type);    type should be just backend for us?
        
         
         
     }
+    
+    public void ReturnFromBattleStart(TextArea textarea){
+        
+//       this.dungeon = new Dungeon(rows,columns);
+//       this.player = new Player(dungeon,0,0);
+       this.textarea = textarea;
+       textarea.setText(player.name + " is at Room "+player.x +","+player.y);
+       textarea.appendText("\nRoom Type:"+player.currentRoom.type);
+        
+    }
+    
     
     public void movePlayer(String direction) throws IOException{
         int x1 = player.x;//x before move
