@@ -40,19 +40,19 @@ create Video presentation
 ```
 
 ## Fetures and Mechanics
-###Exploration of a map 
-'''
+### Exploration of a map 
+```
 User can explore a map on 2 planes
-'''
-###Randomized populated rooms
-'''
+```
+### Randomized populated rooms
+```
 Each room is randomly populated either by a piece of equipment or monster
-'''
-###Combat
-'''
+```
+### Combat
+```
 turn based combat where the player can attack, heal, or defend
-'''
-###Victory and Defeat
-'''
+```
+###V ictory and Defeat
+```
 Victory conditions by finding the exit and defeating its defender. You loose by having no health remaining when fighting.
-'''
+```
