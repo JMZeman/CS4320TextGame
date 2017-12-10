@@ -6,33 +6,38 @@
  Jonas Schuler - SCUM master
  Michael Thomas - Developer
 ```
-##Summery of Sprints
+
+## Summery of Sprints
+
 ### First sprint
-'''
+```
 Solidified concept
 choose language
 planning futre sprints
-'''
+```
+
 ### Second sprint
-'''
+```
 Implimented basic UI
 creation of dungeon, player, and gamehandler classes
 Implimented movement in dungeon
-'''
+```
+
 ### Third sprint
-'''
+```
 combat interface
 refind movement
 Testing
-'''
+```
+
 ### Forth sprint
-'''
+```
 impliment combat
 impliment victory and loose condition
 create documentation
 Testing
 create Video presentation
-'''
+```
 
 ## Fetures and Mechanics
 ###Exploration of a map 
