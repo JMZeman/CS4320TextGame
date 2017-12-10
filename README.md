@@ -52,7 +52,7 @@ Each room is randomly populated either by a piece of equipment or monster
 ```
 turn based combat where the player can attack, heal, or defend
 ```
-###V ictory and Defeat
+### Victory and Defeat
 ```
 Victory conditions by finding the exit and defeating its defender. You loose by having no health remaining when fighting.
 ```
