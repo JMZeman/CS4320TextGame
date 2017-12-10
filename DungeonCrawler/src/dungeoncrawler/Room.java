@@ -45,13 +45,13 @@ public class Room{
             switch(n){  //populates with random monsters
                 
                 case 1:
-                    monster = new Monster("Orc",10,5,90,0);
+                    monster = new Monster("Orc",15,6,90,0);
                     break;
                 case 2:
-                    monster = new Monster("Giant spider", 5, 3, 95, 0);
+                    monster = new Monster("Giant spider", 5, 5, 95, 0);
                     break;
                 case 3:
-                    monster = new Monster("Man Eating Plant", 5, 7, 80, 0);
+                    monster = new Monster("Man Eating Plant", 8, 7, 80, 0);
                     break;
                     
             }
@@ -97,7 +97,7 @@ public class Room{
         
         else if(a==x-1 && b == y-1){ //if this is the final room//needs to be changed
             type = "FINAL";
-            monster = new Monster("Demon Lord", 20, 8, 95, 0);
+            monster = new Monster("Demon Lord", 30, 8, 95, 0);
         }
         
         else if (n <= 20){
